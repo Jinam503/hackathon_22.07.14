@@ -10,7 +10,6 @@ public class BulletEnemy : MonoBehaviour
     private void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
-        transform.rotation = Quaternion.Euler(0, 0, Random.Range(-15, 15));
     }
     private void Update()
     {

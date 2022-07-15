@@ -9,11 +9,10 @@ public class Bullet : MonoBehaviour
     private void Start()
     {
         rigid = GetComponent<Rigidbody2D>();
-        transform.rotation = Quaternion.Euler(0, 0, Random.Range(177, 183));
     }
     private void Update()
     {
-        rigid.velocity = transform.up * speed * -1;
+        rigid.velocity = transform.up * speed;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

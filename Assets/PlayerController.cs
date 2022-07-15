@@ -61,7 +61,7 @@ public class PlayerController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if ( collision.gameObject.tag == "BulletE")
+        if ( collision.gameObject.tag == "Enemy")
         {
             GameManager.instance.Hp--;
         }

@@ -4,57 +4,31 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public float maxShootDelay;
-    public float curShoorDelay;
+    public Transform spawnPoint;
 
-    public GameObject targetPos;
+    public float speed;
+
+    Rigidbody2D rigid;
 
     public int curHp = 10;
     public int maxHp;
-    Vector3 vel = Vector3.zero;
-    private Vector3 vec;
-
-    public GameObject bullet;
 
     private bool isAlive;
     private void Start()
     {
         isAlive = true;
-        vec = transform.position;
         curHp = maxHp;
-        maxShootDelay = 0;
+        rigid = GetComponent<Rigidbody2D>();
     }
     private void Update()
     {
         if (isAlive == false)
         {
-            transform.position = vec;
+            transform.position = spawnPoint.position;
             curHp = maxHp;
             isAlive = true;
         }
-        transform.position = Vector3.SmoothDamp(gameObject.transform.position, targetPos.transform.position, ref vel, 0.4f);
-
-        if (Mathf.Round(targetPos.transform.position.y) == Mathf.Round(transform.position.y))
-        {
-            Shoot();
-            R();
-        }
-    }
-
-    void R()
-    {
-        curShoorDelay += Time.deltaTime;
-    }
-    void Shoot()
-    {
-        if (curShoorDelay < maxShootDelay)
-        {
-            return;
-        }
-        Instantiate(bullet, transform.position, transform.rotation);
-        curShoorDelay = 0;
-        maxShootDelay = Random.Range(1.0f, 3.0f);
-
+        rigid.velocity = transform.up * speed * -1;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -66,9 +40,13 @@ public class EnemyController : MonoBehaviour
             {
                 GameManager.instance.score += 3000;
                 isAlive = false;
+
                 
-                transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z +5);
             }
+        }
+        if(collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Player")
+        {
+            isAlive = false;
         }
     }
 }
