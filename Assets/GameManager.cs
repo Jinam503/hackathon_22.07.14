@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance = null;
+    public GameObject EndGame;
 
     private void Awake()
     {
+        isAlive = true;
         EndGame.SetActive(false);
         if (instance == null) //instance가 null. 즉, 시스템상에 존재하고 있지 않을때
         {
@@ -23,27 +24,14 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public  int score;
-    public  int Hp;
-    public GameObject obj1;
-    public GameObject obj2;
-    public GameObject obj3;
-    public GameObject EndGame;
+    public  int scoreMeter;
+    public bool isAlive;
+
     private void Update()
     {
-        switch(Hp)
+        if(isAlive)
         {
-            case 2:
-                obj3.SetActive(false);
-                break;
-                
-            case 1:
-                obj2.SetActive(false);
-                break;
-            case 0:
-                obj1.SetActive(false);
-                EndGame.SetActive(true);
-                break;
+            scoreMeter++;
         }
     }
 }

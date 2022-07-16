@@ -39,15 +39,9 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        if (Input.GetKey(KeyCode.Space))
-        {
-            Vector3 vec1 = new Vector3(transform.position.x - 0.2f, transform.position.y,transform.position.z);
-            Vector3 vec2 = new Vector3(transform.position.x + 0.2f, transform.position.y, transform.position.z);
-            Instantiate(bullet, vec1, transform.rotation) ;
-            Instantiate(bullet, vec2, transform.rotation);
-            curShoorDelay = 0;
-        }
-        
+        Instantiate(bullet, transform.position, transform.rotation);
+        curShoorDelay = 0;
+
     }
     void Move()
     {
@@ -63,12 +57,9 @@ public class PlayerController : MonoBehaviour
     {
         if ( collision.gameObject.tag == "Enemy")
         {
-            GameManager.instance.Hp--;
-        }
-        
-        if(GameManager.instance.Hp <=0)
-        {
             Destroy(gameObject);
+            GameManager.instance.isAlive = false;
+            GameManager.instance.EndGame.SetActive(true);
         }
         
     }

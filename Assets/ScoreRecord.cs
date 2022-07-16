@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ScoreRecord : MonoBehaviour
 {
     Text text;
+    public GameManager gameManager;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,6 +16,6 @@ public class ScoreRecord : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = "" + GameManager.instance.score;
+        text.text = gameManager.scoreMeter + "M";
     }
 }
