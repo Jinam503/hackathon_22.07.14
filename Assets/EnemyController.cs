@@ -8,7 +8,7 @@ public class EnemyController : MonoBehaviour
 
     Rigidbody2D rigid;
 
-    public int curHp = 10;
+    public int curHp;
     public int maxHp;
 
     private void Start()
@@ -26,17 +26,20 @@ public class EnemyController : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Bullet")
-        {
-            curHp--;
-            if (curHp <= 0)
-            {
-                Destroy(gameObject);
-            }
-        }
         if(collision.gameObject.tag == "Wall" || collision.gameObject.tag == "Player")
         {
             Destroy(gameObject);
         }
+    }
+    public void GetDamage(int damage)
+    {
+        curHp -= damage;
+        if (curHp <= 0)
+        {
+
+            Destroy(gameObject);
+        }
+
+        return;
     }
 }

@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
     }
     void Move()
     {
-        moveX = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
+        moveX = Input.GetAxisRaw("Horizontal") * moveSpeed * Time.deltaTime;
         Vector2 vex = new Vector2(transform.position.x + moveX, -3.2f);
         transform.position = Clamp(vex);
     }

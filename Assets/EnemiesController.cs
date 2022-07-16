@@ -6,6 +6,7 @@ public class EnemiesController : MonoBehaviour
 {
     public GameObject[] spawnPoints;
     public GameObject enemyPrefab;
+    public float respawnTime;
 
     public bool canSpwan;
     void Start()
@@ -27,7 +28,7 @@ public class EnemiesController : MonoBehaviour
         {
             Instantiate(enemyPrefab, spawnPoints[i].transform.position, spawnPoints[i].transform.rotation);
         }
-        yield return new WaitForSeconds(3);
+        yield return new WaitForSeconds(respawnTime);
         canSpwan = true;
     }
 }
