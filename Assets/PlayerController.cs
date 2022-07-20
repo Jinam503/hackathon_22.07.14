@@ -39,7 +39,23 @@ public class PlayerController : MonoBehaviour
         {
             return;
         }
-        Instantiate(bullet, transform.position, transform.rotation);
+        switch(GameManager.instance.bulletLevel)
+        {
+            case 1:
+                Instantiate(bullet, transform.position, transform.rotation);
+                break;
+            case 2:
+                Vector3 vec1 = new Vector3(transform.position.x - 0.12f, transform.position.y, transform.position.z);
+                Vector3 vec2 = new Vector3(transform.position.x + 0.12f, transform.position.y, transform.position.z);
+                Instantiate(bullet, vec1, transform.rotation);
+                Instantiate(bullet, vec2 , transform.rotation);
+                break;
+            case 3:
+                break;
+            case 4:
+                break;
+        }
+        
         curShoorDelay = 0;
 
     }
@@ -63,4 +79,6 @@ public class PlayerController : MonoBehaviour
         }
         
     }
+    
+
 }

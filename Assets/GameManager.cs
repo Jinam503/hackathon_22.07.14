@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
-        isAlive = true;
+        bulletLevel = 1;
+        isAlive = false;
         EndGame.SetActive(false);
         if (instance == null) //instance가 null. 즉, 시스템상에 존재하고 있지 않을때
         {
@@ -26,6 +27,9 @@ public class GameManager : MonoBehaviour
 
     public  int scoreMeter;
     public bool isAlive;
+    [SerializeField]
+    [Range(1, 4)]
+    public int bulletLevel;
 
     private void Update()
     {
@@ -33,5 +37,13 @@ public class GameManager : MonoBehaviour
         {
             scoreMeter++;
         }
+    }
+    public void BulletLevelUp()
+    {
+        bulletLevel++;
+    }
+    public void BulletLevelDown()
+    {
+        bulletLevel--;
     }
 }
