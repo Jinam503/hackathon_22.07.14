@@ -33,13 +33,14 @@ public class PlayerController : MonoBehaviour
     {
         curShoorDelay += Time.deltaTime;
     }
+    int a = 2;
     void Shoot()
     {
         if(curShoorDelay < maxShootDelay)
         {
             return;
         }
-        switch(GameManager.instance.bulletLevel)
+        switch(a)
         {
             case 1:
                 Instantiate(bullet, transform.position, transform.rotation);
