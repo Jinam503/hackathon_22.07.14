@@ -7,13 +7,14 @@ using UnityEngine.SceneManagement;
 public class StartManager : MonoBehaviour
 {
     public Text text;
+    public static int bulletLevel;
 
     private void Awake()
     {
         text.text = "0";
         bulletLevel = 1;
     }
-    public int bulletLevel;
+    
 
     private void Update()
     {
@@ -33,9 +34,9 @@ public class StartManager : MonoBehaviour
             bulletLevel--;
         }
     }
+    
     public void GameStart()
     {
         SceneManager.LoadScene("MainGame");
-        GameManager.instance.isAlive = true;
     }
 }

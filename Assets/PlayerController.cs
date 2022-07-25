@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     float moveSpeed;
 
     public GameObject bullet;
+    public GameManager gameManager;
 
     void Start()
     {
@@ -75,8 +76,8 @@ public class PlayerController : MonoBehaviour
         if ( collision.gameObject.tag == "Enemy")
         {
             Destroy(gameObject);
-            GameManager.instance.isAlive = false;
-            GameManager.instance.EndGame.SetActive(true);
+            gameManager.isAlive = false;
+            gameManager.EndGame.SetActive(true);
         }
         
     }
